@@ -12,6 +12,10 @@ angular.module('wwwNamDiepApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+      .when('/guests', {
+        templateUrl: 'partials/guests',
+        controller: 'GuestsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
