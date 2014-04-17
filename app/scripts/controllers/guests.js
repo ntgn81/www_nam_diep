@@ -3,7 +3,21 @@
 angular.module('wwwNamDiepApp')
   .controller('GuestsCtrl', function ($scope, $http, $modal) {
     $http.get('/api/guests').success(function(guests) {
-      $scope.guests = guests;
+      $scope.guests = [{
+        name: 'abc'
+      },{
+        name: 'abc'
+      },{
+        name: 'abc'
+      },{
+        name: 'abc'
+      },{
+        name: 'abc'
+      },{
+        name: 'abc'
+      },{
+        name: 'abc'
+      }];
     });
 
     $scope.create = function() {

@@ -1,2 +1,29 @@
 .guest_edit(ng-controller="GuestEditCtrl")
-  | bla bla bla
+  .modal-header
+    h3 Edit/Create
+  .modal-body
+    form(role="form")
+      .form-group
+        label(for="name") Name
+        input.form-control#name(type="text", ng-model="guest.name", placeholder="Name")
+      .form-group
+        label(for="acceptedMessage") Accepted Message
+        input.form-control#acceptedMessage(type="text", ng-model="guest.messages.acceptedMessage", placeholder="Accepted message")
+      .form-group
+        label(for="declinedMessage") Declined Message
+        input.form-control#declinedMessage(type="text", ng-model="guest.messages.declinedMessage", placeholder="Declined message")
+      .form-group
+        label(for="openedMessage") Opened Message
+        input.form-control#openedMessage(type="text", ng-model="guest.messages.openedMessage", placeholder="Opened message")
+      .form-group
+        label(for="unopenedMessage") Unopened Message
+        input.form-control#unopenedMessage(type="text", ng-model="guest.messages.unopenedMessage", placeholder="Unopened message")
+      .form-group
+        label(for="phone") Phone number
+        input.form-control#phone(type="tel", ng-model="guest.phone", placeholder="Unopened message")
+  .modal-footer
+    button.btn.btn-primary(ng-click="save(guest)") Save
+    button.btn.btn-warning Cancel
+
+
+

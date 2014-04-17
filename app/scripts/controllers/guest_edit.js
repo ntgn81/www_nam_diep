@@ -2,6 +2,9 @@
 
 angular.module('wwwNamDiepApp')
   .controller('GuestEditCtrl', function ($scope, $http) {
-    console.log('guest edit', $scope);
-    
+
+    $scope.save = function(guest) {
+      //$http.post('/api/guests', guest, function())
+      console.log('saving', guest);
+    };
   });
