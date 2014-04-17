@@ -4,18 +4,21 @@ angular.module('wwwNamDiepApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
-        controller: 'MainCtrl'
       })
       .when('/guests', {
         templateUrl: 'partials/guests',
-        controller: 'GuestsCtrl'
       })
+      // .when('/guest_edit', {
+      //   templateUrl: 'partials/guest_edit',
+      //   controller: 'GuestEditCtrl'
+      // })
       .otherwise({
         redirectTo: '/'
       });
