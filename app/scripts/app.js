@@ -20,6 +20,10 @@ angular.module('wwwNamDiepApp', [
       //   templateUrl: 'partials/guest_edit',
       //   controller: 'GuestEditCtrl'
       // })
+      .when('/admin', {
+        templateUrl: 'partials/admin',
+        controller: 'AdminCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
