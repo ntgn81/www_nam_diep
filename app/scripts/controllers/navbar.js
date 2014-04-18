@@ -6,8 +6,8 @@ angular.module('wwwNamDiepApp')
       title: 'Home',
       link: '/'
     }, {
-      title: 'Guests',
-      link: '/guests'
+      title: 'Admin',
+      link: '/admin'
     }];
     
     $scope.isActive = function(route) {

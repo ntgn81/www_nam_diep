@@ -1,11 +1,7 @@
 .admin.row(ng-controller="AdminCtrl")
   .col-md-4
-    button.btn.btn-default(type="button", ng-click="create()")
-      | Create New
-    h3
-      | Guest list
-    input(type="text", ng-model="searchText")
-    table.table.table-hover
+    input.form-control(type="text", ng-model="searchText", placeholder="Filter by name")
+    table.table.table-hover.guest-list
       thead
         tr
           th Name
@@ -13,7 +9,7 @@
       tbody
         tr(ng-repeat="guest in guests | filter:searchText",
            ng-animate="'animate'",
-           ng-class="{success: guest._id === selectedGuest._id}",
+           ng-class="{success: guest._id === $parent.guest._id}",
            ng-click="select(guest)")
           td {{guest.name}}
           td
@@ -23,26 +19,37 @@
             button.btn.btn-xs.btn-danger(ng-click="delete(guest)")
               span.glyphicon.glyphicon-remove
   .col-md-8
-    form(role="form")
+    form(role="form", name="guestForm")
+      .form-group(
+          ng-class="{'has-error': guestForm.name.$invalid}"
+        )
+        label.control-label.control-label.control-label(for="name") Name
+        input.form-control#name(
+          name="name",
+          type="text",
+          ng-model="guest.name",
+          placeholder="Name",
+          ui-validate="'validateName($value)'"
+        )
       .form-group
-        label(for="name") Name
-        input.form-control#name(type="text", ng-model="selectedGuest.name", placeholder="Name")
+        label.control-label(for="acceptedMessage") Accepted Message
+        input.form-control#acceptedMessage(type="text", ng-model="guest.messages.accepted", placeholder="Accepted message")
       .form-group
-        label(for="acceptedMessage") Accepted Message
-        input.form-control#acceptedMessage(type="text", ng-model="selectedGuest.messages.acceptedMessage", placeholder="Accepted message")
+        label.control-label(for="declinedMessage") Declined Message
+        input.form-control#declinedMessage(type="text", ng-model="guest.messages.declined", placeholder="Declined message")
       .form-group
-        label(for="declinedMessage") Declined Message
-        input.form-control#declinedMessage(type="text", ng-model="selectedGuest.messages.declinedMessage", placeholder="Declined message")
+        label.control-label(for="openedMessage") Opened Message
+        input.form-control#openedMessage(type="text", ng-model="guest.messages.opened", placeholder="Opened message")
       .form-group
-        label(for="openedMessage") Opened Message
-        input.form-control#openedMessage(type="text", ng-model="selectedGuest.messages.openedMessage", placeholder="Opened message")
+        label.control-label(for="unopenedMessage") Unopened Message
+        input.form-control#unopenedMessage(type="text", ng-model="guest.messages.unopened", placeholder="Unopened message")
       .form-group
-        label(for="unopenedMessage") Unopened Message
-        input.form-control#unopenedMessage(type="text", ng-model="selectedGuest.messages.unopenedMessage", placeholder="Unopened message")
-      .form-group
-        label(for="phone") Phone number
-        input.form-control#phone(type="tel", ng-model="selectedGuest.phone", placeholder="Unopened message")
-    button.btn.btn-primary(ng-click="save(guest)") Save
+        label.control-label(for="phone") Phone number
+        input.form-control#phone(type="tel", ng-model="guest.phone", placeholder="Unopened message")
+    button.btn.btn-primary(ng-click="save(guest)", ng-if="guest._id") Save
+    button.btn.btn-primary(ng-click="create(guest)", ng-if="!guest._id") Create
+    | &nbsp;
+    button.btn.btn-primary(ng-click="reset(guest)", ng-if="guest._id") Reset
     | &nbsp;
     button.btn.btn-warning(ng-click="cancel()") Cancel
 
